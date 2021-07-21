@@ -1,0 +1,26 @@
+{
+    "name": "koempf/akeneo-attributes-to-variants-bundle",
+    "description": "Simple command to add an attribute to all family variants",
+    "keywords": [
+        "akeneo",
+        "pim"
+    ],
+    "type": "library",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lars Malach",
+            "email": "lam@koempf24.de",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "akeneo/pim-community-dev": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Koempf\\AttributeToVariantsBundle\\": "src/"
+        }
+    }
+}

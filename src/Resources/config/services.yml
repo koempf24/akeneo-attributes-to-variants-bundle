@@ -1,0 +1,19 @@
+---
+services:
+    # Command
+    Koempf\AttributeToVariantsBundle\Command\AddAttributeToVariantsCommand:
+        class: 'Koempf\AttributeToVariantsBundle\Command\AddAttributeToVariantsCommand'
+        arguments:
+            - '@pim_catalog.repository.attribute'
+            - '@pim_catalog.repository.family'
+            - '@koempf_attribute_to_variants.adder.attribute_to_variants'
+            - '@pim_user.manager'
+            - '@security.token_storage'
+        tags:
+            - { name: console.command }
+
+    # Adder
+    koempf_attribute_to_variants.adder.attribute_to_variants:
+        class: 'Koempf\AttributeToVariantsBundle\Adder\AttributeToVariantsAdder'
+        arguments:
+            - '@pim_catalog.saver.family'
