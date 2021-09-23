@@ -22,10 +22,19 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
  */
 class AddAttributeToVariantsCommand extends Command
 {
+    /**
+     * @var string
+     */
     private const ATTRIBUTE_OPTION = 'attribute';
 
+    /**
+     * @var string
+     */
     private const FAMILIES_OPTION = 'families';
 
+    /**
+     * @var string
+     */
     private const USER_NAME_OPTION = 'user-name';
 
     /**
