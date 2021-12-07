@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types = 1);
 
 namespace Koempf\AttributeToVariantsBundle\Command;
@@ -80,9 +79,9 @@ class AddAttributeToVariantsCommand extends Command
     protected function configure(): void
     {
         $this
-            ->addOption(static::ATTRIBUTE_OPTION, 'attr', InputOption::VALUE_REQUIRED)
-            ->addOption(static::FAMILIES_OPTION, 'fam', InputOption::VALUE_REQUIRED)
-            ->addOption(static::USER_NAME_OPTION, 'user', InputOption::VALUE_OPTIONAL, '', 'admin');
+            ->addOption(self::ATTRIBUTE_OPTION, 'attr', InputOption::VALUE_REQUIRED)
+            ->addOption(self::FAMILIES_OPTION, 'fam', InputOption::VALUE_REQUIRED)
+            ->addOption(self::USER_NAME_OPTION, 'user', InputOption::VALUE_OPTIONAL, '', 'admin');
     }
 
     /**
@@ -93,7 +92,7 @@ class AddAttributeToVariantsCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $this->createUserToken($input->getOption(static::USER_NAME_OPTION));
+        $this->createUserToken($input->getOption(self::USER_NAME_OPTION));
 
         $attribute = $this->getAttribute($input);
         $families = $this->getFamilies($input);
@@ -115,7 +114,7 @@ class AddAttributeToVariantsCommand extends Command
      */
     private function getAttribute(InputInterface $input): AttributeInterface
     {
-        $attributeCode = $input->getOption(static::ATTRIBUTE_OPTION);
+        $attributeCode = $input->getOption(self::ATTRIBUTE_OPTION);
 
         $attribute = $this->attributeRepository->findOneByIdentifier($attributeCode);
 
@@ -131,17 +130,17 @@ class AddAttributeToVariantsCommand extends Command
      *
      * @throws \RuntimeException
      *
-     * @return \Akeneo\Pim\Structure\Component\Model\FamilyInterface[]
+     * @return array<\Akeneo\Pim\Structure\Component\Model\FamilyInterface>
      */
     private function getFamilies(InputInterface $input): array
     {
-        $familyCodes = preg_split('/\s*,\s*/', $input->getOption(static::FAMILIES_OPTION), -1, PREG_SPLIT_NO_EMPTY);
+        $familyCodes = preg_split('/\s*,\s*/', $input->getOption(self::FAMILIES_OPTION), -1, PREG_SPLIT_NO_EMPTY);
 
         if ($familyCodes === ['*']) {
-            /** @var \Akeneo\Pim\Structure\Component\Model\FamilyInterface[] $families */
+            /** @var array<\Akeneo\Pim\Structure\Component\Model\FamilyInterface> $families */
             $families = $this->familyRepository->findAll();
         } else {
-            /** @var \Akeneo\Pim\Structure\Component\Model\FamilyInterface[] $families */
+            /** @var array<\Akeneo\Pim\Structure\Component\Model\FamilyInterface> $families */
             $families = $this->familyRepository->findBy(['code' => $familyCodes]);
         }
 

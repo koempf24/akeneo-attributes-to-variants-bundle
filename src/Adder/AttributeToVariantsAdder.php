@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types = 1);
 
 namespace Koempf\AttributeToVariantsBundle\Adder;
@@ -28,7 +27,7 @@ class AttributeToVariantsAdder
      */
     public function addAttributeToAllVariants(AttributeInterface $attribute, FamilyInterface $family): void
     {
-        /** @var \Akeneo\Pim\Structure\Component\Model\FamilyVariantInterface[] $variants */
+        /** @var array<\Akeneo\Pim\Structure\Component\Model\FamilyVariantInterface> $variants */
         $variants = $family->getFamilyVariants();
 
         $changed = false;
