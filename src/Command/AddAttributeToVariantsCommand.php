@@ -144,7 +144,7 @@ class AddAttributeToVariantsCommand extends Command
             $families = $this->familyRepository->findBy(['code' => $familyCodes]);
         }
 
-        if (empty($families)) {
+        if (!$families) {
             throw new RuntimeException('No families found with "' . implode(', ', $familyCodes) . '"!');
         }
 
